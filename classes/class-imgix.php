@@ -51,7 +51,7 @@ class Imgix {
         $wp_url = preg_quote(Plugin::wp_url());
         $uploads_dir_rel_wp = preg_quote(Plugin::uploads_dir_rel_wp());
         $pattern = "<(?:img|source)\s+[^>]*src\s*=\s*['\"](?:|$wp_url)/\K($uploads_dir_rel_wp/(?:\d{4}/\d{2}/)?(?:[^'\"]+?)(?:(\d+)x(\d+))?\.(?:jpg|jpeg|gif|png))(?=['\"]\s+[^>]*/>)";
-        $pattern = apply_filters('kntnt-imgix-parse-html-pattern', "`$pattern`i", $wp_url, $uploads_dir_rel_wp);
+        $pattern = apply_filters('kntnt_imgix_parse_html_pattern', "`$pattern`i", $wp_url, $uploads_dir_rel_wp);
         $content = preg_replace_callback($pattern, function ($matches) {
             return htmlspecialchars($this->translate_url($matches[1], array_slice($matches, 2)));
         }, $content);
