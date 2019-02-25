@@ -18,7 +18,7 @@ class Imgix {
 
     public function __construct() {
 
-        // Scale and crop.
+        // Scale and crop.fit scale
         $this->params['fit'] = "scale";
 
         // Automatic improvements.
@@ -185,7 +185,7 @@ class Imgix {
     private function get_requested_size($req_abspath, $matches) {
 
         // Allow another plugin to override this method.
-        if ($req_size = apply_filters('get_requested_size', [], $req_abspath, $matches)) {
+        if ($req_size = apply_filters('kntnt_imgix_get_requested_size', [], $req_abspath, $matches)) {
             Plugin::trace('Filter `get_requested_size` returns %s', $req_size);
             return $req_size;
         }
@@ -204,7 +204,7 @@ class Imgix {
     private function get_original_image_path($req_abspath, $req_size) {
 
         // Allow another plugin to override this method.
-        if ($org_abspath = apply_filters('get_original_image_path', '', $req_abspath, $req_size)) {
+        if ($org_abspath = apply_filters('kntnt_imgix_get_original_image_path', '', $req_abspath, $req_size)) {
             Plugin::trace('Filter `get_original_image_path` returns %s', $org_abspath);
             return $org_abspath;
         }
@@ -293,7 +293,7 @@ class Imgix {
 
         // Allow other plugins to alter Imgix parameters.
         // See also filter `imgix_parameters`.
-        $params = apply_filters('imgix_parameters_final', $imgix_params + $this->params);
+        $params = apply_filters('kntnt_imgix_parameters_final', $imgix_params + $this->params);
 
         return $this->builder->createURL($org_relpath, $params);
 
