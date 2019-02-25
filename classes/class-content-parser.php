@@ -71,9 +71,6 @@ class Content_Parser {
                 }, 0);
             }
 
-            // Allow others to add additional hooks.
-            do_action('kntnt_imgix_content_parser', $imgix);
-
         }
 
     }

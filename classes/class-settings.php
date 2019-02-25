@@ -81,10 +81,7 @@ class Settings extends Abstract_Settings {
                 'sanitizer'   => function ($strict) { return isset($strict); },
             ],
 
-        ];
-
-        if ( ! has_filter('kntnt_imgix_parse')) {
-            $fields['performance'] = [
+            'performance' => [
                 'type'        => 'select',
                 'options'     => [
                     'fast'       => 'Fast',
@@ -95,8 +92,10 @@ class Settings extends Abstract_Settings {
                 'sanitizer'   => function ($performance) {
                     return isset($performance) ? $performance : Plugin::option('performance');
                 },
-            ];
-        }
+            ],
+
+        ];
+
 
         return $fields;
 

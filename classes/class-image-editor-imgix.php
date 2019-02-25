@@ -50,19 +50,20 @@ class Image_Editor_Imgix extends \WP_Image_Editor {
     // Source rectangle
     private $rect;
 
-    // Swap arund the horizontal axis (top becomes bottom and vice versa).
+    // Swap around the horizontal axis (top becomes bottom and vice versa).
     private $flip;
 
-    // Swap arund the vertical axis (left becomes right and vice versa).
+    // Swap around the vertical axis (left becomes right and vice versa).
     private $flop;
 
     // The original image file.
     private $org_file;
 
-    // The oroginal image dimensions.
+    // The original image dimensions.
     private $org_size;
 
     public function __construct($file) {
+        $file = realpath($file);
         Plugin::info("Imgix Image Editor created for %s", $file);
         parent::__construct($file);
     }
@@ -368,7 +369,7 @@ class Image_Editor_Imgix extends \WP_Image_Editor {
             $path = $this->generate_filename(null, null, $extension);
         }
 
-        // Fetch te image and save it to a local file if that option is enabled.
+        // Fetch the image and save it to a local file if that option is enabled.
         if (Plugin::option('local-multiresize')) {
 
             // Fetch the image.
